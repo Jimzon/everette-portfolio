@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everette Farmer | AI Strategy</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #020202;
+  color: white;
+  overflow-x: hidden;
+}
+.floating-badge {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #ddd;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* subtle floating */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+.floating-badge:nth-child(2) {
+  animation-delay: 1s;
+}
+.floating-badge:nth-child(3) {
+  animation-delay: 2s;
+}
+/* Glow backgrounds */
+.bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: rgba(242,107,33,0.15);
+  filter: blur(120px);
+  z-index: -1;
+}
+
+/* Glass UI */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Buttons */
+.btn {
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(242,107,33,0.3);
+}
+
+/* Animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow text */
+.glow {
+  text-shadow: 0 0 20px rgba(242,107,33,0.6);
+}
+
+/* WhatsApp Button */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  color: white;
+  z-index: 100;
+}
+</style>
+
+<!-- META PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', 'YOUR_PIXEL_ID'); 
+fbq('track', 'PageView');
+</script>
+
+<!-- GOOGLE ANALYTICS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'YOUR_GA_ID');
+</script>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-glow top-0 left-0"></div>
+<div class="bg-glow bottom-0 right-0"></div>
+
+
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#020202]/80 backdrop-blur border-b border-white/5">
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+
+    <!-- LOGO -->
+    <a href="#" class="font-bold text-lg tracking-wide">
+      EVERETTE <span class="text-[#F26B21]">FARMER</span>
+    </a>
+
+    <!-- DESKTOP NAV -->
+    <nav class="hidden md:flex items-center gap-8 text-sm text-gray-300">
+
+      <a href="#services" class="hover:text-white transition">Services</a>
+      <a href="#projects" class="hover:text-white transition">Projects</a>
+      <a href="#testimonials" class="hover:text-white transition">Testimonials</a>
+      <a href="#blog" class="hover:text-white transition">Blog</a>
+
+      <!-- PREMIUM BUTTON -->
+      <a href="#contact"
+         class="ml-4 px-5 py-2 rounded-full border border-[#F26B21]/40 
+                text-[#F26B21] font-medium hover:bg-[#F26B21]/10 transition">
+        Book Call
+      </a>
+
+    </nav>
+
+    <!-- BURGER -->
+    <button id="menuBtn" class="md:hidden text-white text-2xl">
+      ☰
+    </button>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" 
+       class="fixed top-20 left-0 w-full h-[calc(100vh-80px)] 
+              bg-[#020202] flex flex-col items-center justify-center 
+              gap-8 text-xl text-white 
+              opacity-0 pointer-events-none transition duration-300">
+
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+    <a href="#blog" onclick="toggleMenu()">Blog</a>
+
+    <a href="#contact"
+       onclick="toggleMenu()"
+       class="mt-6 px-6 py-3 rounded-full border border-[#F26B21]/40 
+              text-[#F26B21] font-medium">
+      Book Strategy Call
+    </a>
+
+  </div>
+
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center overflow-hidden bg-[#020202] pt-28 md:pt-32">
+
+  <!-- 🔥 BACKGROUND GLOW -->
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] 
+              bg-[#F26B21]/20 blur-[180px] rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+    <!-- LEFT CONTENT -->
+    <div class="fade-up">
+
+      <!-- LABEL -->
+      <p class="text-[#F26B21] tracking-widest text-sm mb-4 font-semibold">
+        AI • SYSTEMS • EXECUTION
+      </p>
+
+      <!-- HEADLINE -->
+      <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+
+        Build Smarter Systems.<br>
+
+        <span class="relative inline-block">
+          Scale Faster.
+          <span class="absolute inset-0 blur-2xl bg-[#F26B21]/30 -z-10"></span>
+        </span>
+
+      </h1>
+
+      <!-- DESCRIPTION -->
+      <p class="text-gray-400 text-lg mb-8 max-w-xl">
+        Helping companies turn AI into real operational advantage — 
+        through automation, optimization, and execution.
+      </p>
+
+      <!-- BUTTONS -->
+      <div class="flex gap-4 flex-wrap">
+
+        <!-- PRIMARY CTA -->
+        <a href="#contact"
+           class="inline-flex items-center justify-center gap-2 
+                  px-8 py-4 rounded-full 
+                  bg-[#F26B21] text-white font-semibold
+                  shadow-[0_10px_30px_rgba(242,107,33,0.4)]
+                  hover:scale-105 transition">
+
+          <span>Book Strategy Call</span>
+          <span class="text-lg leading-none">→</span>
+
+        </a>
+
+        <!-- SECONDARY -->
+        <a href="#projects"
+           class="px-8 py-4 rounded-full border border-white/20 
+                  hover:bg-white/5 transition">
+          View Results
+        </a>
+
+      </div>
+
+      <!-- TRUST -->
+      <p class="text-xs text-gray-500 mt-4">
+        Limited client slots available
+      </p>
+
+    </div>
+
+    <!-- RIGHT: IMAGE -->
+    <div class="fade-up relative flex justify-center md:justify-end items-center">
+
+      <!-- IMAGE -->
+      <img 
+        src="images/ewee.png" 
+        alt="Everette Farmer"
+        class="w-[320px] md:w-[440px] object-cover 
+               drop-shadow-[0_60px_120px_rgba(0,0,0,0.9)]
+               transition duration-500 hover:scale-105"
+      >
+
+   <!-- FLOATING BADGES (FIXED POSITION) -->
+<!-- <div class="absolute right-[-20px] md:right-0 top-1/2 -translate-y-1/2 hidden md:block">
+
+  <div class="floating-badge mb-4">
+    +27% Growth
+  </div>
+
+  <div class="floating-badge ml-6 mb-4">
+    AI Systems
+  </div>
+
+  <div class="floating-badge ml-12">
+    Global Clients
+  </div>
+
+</div> -->
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROOF -->
+<section class="py-20 border-y border-white/5 bg-[#020202]">
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+    <div class="grid md:grid-cols-4 gap-10 text-center">
+      <div><h3 class="text-4xl font-bold">27%</h3><p class="text-gray-500 text-sm">Retention Growth</p></div>
+      <div><h3 class="text-4xl font-bold">10+</h3><p class="text-gray-500 text-sm">Years Experience</p></div>
+      <div><h3 class="text-4xl font-bold">Global</h3><p class="text-gray-500 text-sm">Clients</p></div>
+      <div><h3 class="text-4xl font-bold">ISO</h3><p class="text-gray-500 text-sm">Security</p></div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services" class="py-28 bg-[#020202] relative overflow-hidden">
+
+  <!-- subtle glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[600px] h-[300px] 
+              bg-[#F26B21]/10 blur-[160px] rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+    <!-- HEADER -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl font-extrabold mb-4">
+        Services That Drive Real Results
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">
+        Designed to help organizations scale, optimize, and lead in a fast-changing digital landscape.
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- CARD -->
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">Program & Project Management</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Deliver mission-critical initiatives on time using agile methods and technology-driven execution.
+        </p>
+
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">Digital Strategy & Innovation</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Drive long-term growth through strategic planning, innovation frameworks, and market analysis.
+        </p>
+
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">Remote Work Transformation</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Build scalable systems that boost productivity and strengthen distributed team collaboration.
+        </p>
+
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">AI & ML Integration</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Implement automation and predictive analytics to improve efficiency and unlock insights.
+        </p>
+
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">SOP & Process Creation</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Standardize workflows to reduce variability and create a foundation for scalable growth.
+        </p>
+
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-[#0a0a0a] border border-white/5 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <h3 class="font-bold text-lg mb-3">Enterprise Optimization</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Align people, processes, and technology to improve efficiency and operational performance.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="py-28 bg-[#050505] relative overflow-hidden">
+
+  <!-- subtle background glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[600px] h-[300px] 
+              bg-[#F26B21]/10 blur-[160px] rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+    <!-- HEADER -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl font-extrabold mb-4">
+        Real Results. Real Impact.
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">
+        A selection of projects delivering measurable business outcomes.
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <!-- IMAGE -->
+        <div class="overflow-hidden">
+          <img src="images/project1.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="p-6">
+
+          <!-- RESULT TAG -->
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            Reduced operational friction
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            Remote Work Overhaul for Global Tech Firm
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Redesigned remote infrastructure and workflows across distributed teams.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            North America & Southeast Asia
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/project2.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            AI-driven personalization
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            AI Customer Insights Platform
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Built analytics tools enabling smarter product and user experience decisions.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            Amsaleh Sector
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/project3.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            -30% delivery inefficiencies
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            Enterprise Logistics Platform
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Developed a secure platform improving logistics performance at scale.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            Global Rollout
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/project4.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            Standardized global operations
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            SOP & Process Implementation
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Created frameworks improving consistency across distributed teams.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            North America & Southeast Asia
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/project5.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            +25% sales growth
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            Shopify Optimization
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Improved UX and funnels driving measurable conversion increases.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            Regional Commerce
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/project6.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-[#F26B21] text-xs font-semibold mb-2">
+            Scalable AI roadmap
+          </p>
+
+          <h3 class="font-bold text-lg mb-2">
+            AI Strategy for Healthtech
+          </h3>
+
+          <p class="text-gray-400 text-sm mb-4">
+            Integrated ML and analytics to improve diagnostics and delivery.
+          </p>
+
+          <p class="text-xs text-gray-500">
+            Europe
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- RESULTS -->
+<section class="py-16 bg-[#020202] border-y border-white/5">
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-4 gap-8 text-center">
+
+    <div>
+      <h3 class="text-3xl font-bold">+27%</h3>
+      <p class="text-gray-500 text-sm">Retention Growth</p>
+    </div>
+
+    <div>
+      <h3 class="text-3xl font-bold">-30%</h3>
+      <p class="text-gray-500 text-sm">Operational Inefficiency</p>
+    </div>
+
+    <div>
+      <h3 class="text-3xl font-bold">25%</h3>
+      <p class="text-gray-500 text-sm">Sales Increase</p>
+    </div>
+
+    <div>
+      <h3 class="text-3xl font-bold">Global</h3>
+      <p class="text-gray-500 text-sm">Client Reach</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="py-28 bg-[#020202] relative overflow-hidden">
+
+  <!-- glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[500px] h-[250px] 
+              bg-[#F26B21]/10 blur-[140px] rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+    <!-- HEADER -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl font-extrabold mb-4">
+        Insights & Ideas
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">
+        Thoughts on AI, systems, and building scalable businesses.
+      </p>
+    </div>
+
+    <!-- 🔥 FEATURED BLOG -->
+    <div class="mb-20 grid md:grid-cols-2 gap-10 items-center">
+
+      <!-- TEXT -->
+      <div>
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">
+          Big Data & Its Business Impacts
+        </h3>
+
+        <p class="text-gray-400 mb-4 leading-relaxed">
+          Unlock the power of data to make smarter, faster decisions. Big Data helps organizations collect, store, and analyze massive amounts of information—giving you the edge to predict trends, optimize operations, and understand customer behavior.
+        </p>
+
+        <p class="text-gray-400 mb-6 leading-relaxed">
+          From real-time analytics to AI-driven insights, data is now a strategic asset. Learn how to leverage it to boost innovation and transform your business.
+        </p>
+
+       <a href="#" 
+   class="inline-flex items-center gap-2 px-6 py-3 
+          border border-[#F26B21]/40 text-[#F26B21] 
+          rounded-full text-sm font-medium
+          hover:bg-[#F26B21]/10 transition">
+  Read More →
+</a>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="overflow-hidden rounded-2xl">
+        <img src="images/blog1.jpg" 
+             class="w-full h-[300px] md:h-[400px] object-cover 
+                    hover:scale-105 transition duration-700">
+      </div>
+
+    </div>
+
+    <!-- OTHER BLOG POSTS -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- CARD -->
+      <div class="group bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/blog2.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+          <p class="text-xs text-[#F26B21] mb-2">AI Strategy</p>
+          <h3 class="font-bold text-lg mb-2">
+            How AI Is Changing Business Operations
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            A breakdown of how companies use AI to scale faster.
+          </p>
+          <a href="#" class="text-xs text-gray-300 hover:text-white transition">
+            Read more →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/blog3.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+          <p class="text-xs text-[#F26B21] mb-2">Remote Work</p>
+          <h3 class="font-bold text-lg mb-2">
+            Building High-Performance Remote Teams
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            Systems for managing distributed teams effectively.
+          </p>
+          <a href="#" class="text-xs text-gray-300 hover:text-white transition">
+            Read more →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="group bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden 
+                  transition duration-500 hover:-translate-y-2 hover:border-[#F26B21]/40">
+
+        <div class="overflow-hidden">
+          <img src="images/blog4.jpg" 
+               class="w-full h-52 object-cover transition duration-700 group-hover:scale-110">
+        </div>
+
+        <div class="p-6">
+          <p class="text-xs text-[#F26B21] mb-2">Growth Systems</p>
+          <h3 class="font-bold text-lg mb-2">
+            Why Businesses Fail to Scale
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            The hidden bottlenecks that stop growth.
+          </p>
+          <a href="#" class="text-xs text-gray-300 hover:text-white transition">
+            Read more →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- TESTIMONIAL -->
+<section id="testimonials" class="py-28 bg-[#020202] relative overflow-hidden">
+
+  <!-- glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[500px] h-[250px] 
+              bg-[#F26B21]/10 blur-[140px] rounded-full"></div>
+
+  <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10 text-center">
+
+    <!-- HEADER -->
+    <h2 class="text-4xl font-extrabold mb-16">
+      Proven Results
+    </h2>
+
+    <!-- SLIDER WRAPPER -->
+    <div class="relative overflow-hidden">
+
+      <!-- SLIDES -->
+      <div id="testimonialSlider" class="flex transition duration-500">
+
+        <!-- SLIDE 1 -->
+        <div class="min-w-full px-4">
+          <div class="bg-[#0a0a0a] border border-white/5 rounded-2xl p-10">
+
+            <p class="text-[#F26B21] text-sm mb-3">KEY RESULT</p>
+            <h3 class="text-5xl font-extrabold mb-4">+27%</h3>
+            <p class="text-gray-400 mb-6">
+              Increase in customer retention using AI-driven insights.
+            </p>
+
+            <p class="text-gray-300 text-lg mb-6">
+              “We scaled with confidence after restructuring our systems.”
+            </p>
+
+            <p class="font-semibold">Head of Operations</p>
+            <p class="text-sm text-gray-500">Global Tech Firm</p>
+
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="min-w-full px-4">
+          <div class="bg-[#0a0a0a] border border-white/5 rounded-2xl p-10">
+
+            <p class="text-[#F26B21] text-sm mb-3">KEY RESULT</p>
+            <h3 class="text-5xl font-extrabold mb-4">-30%</h3>
+            <p class="text-gray-400 mb-6">
+              Reduction in operational inefficiencies.
+            </p>
+
+            <p class="text-gray-300 text-lg mb-6">
+              “We eliminated bottlenecks and improved team coordination.”
+            </p>
+
+            <p class="font-semibold">Operations Manager</p>
+            <p class="text-sm text-gray-500">Logistics Company</p>
+
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="min-w-full px-4">
+          <div class="bg-[#0a0a0a] border border-white/5 rounded-2xl p-10">
+
+            <p class="text-[#F26B21] text-sm mb-3">KEY RESULT</p>
+            <h3 class="text-5xl font-extrabold mb-4">+25%</h3>
+            <p class="text-gray-400 mb-6">
+              Increase in sales through funnel optimization.
+            </p>
+
+            <p class="text-gray-300 text-lg mb-6">
+              “We saw real revenue impact within weeks.”
+            </p>
+
+            <p class="font-semibold">eCommerce Manager</p>
+            <p class="text-sm text-gray-500">Retail Brand</p>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BUTTONS -->
+      <button onclick="prevSlide()" 
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/5 px-3 py-2 rounded-full">
+        ←
+      </button>
+
+      <button onclick="nextSlide()" 
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/5 px-3 py-2 rounded-full">
+        →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- CONTACT -->
+<section id="contact" 
+         class="py-32 relative overflow-hidden 
+                bg-gradient-to-b from-[#020202] via-[#050505] to-[#020202]">
+
+  <!-- glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 
+              w-[600px] h-[300px] bg-[#F26B21]/10 blur-[160px] rounded-full"></div>
+
+  <div class="max-w-4xl mx-auto px-6 md:px-12 text-center relative z-10">
+
+    <!-- SMALL LABEL -->
+    <p class="text-[#F26B21] text-xs tracking-widest mb-6">
+      READY TO SCALE?
+    </p>
+
+    <!-- HEADLINE -->
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Let’s Build Systems That<br>
+      Actually Drive Results
+    </h2>
+
+    <!-- SUBTEXT -->
+    <p class="text-gray-400 max-w-xl mx-auto mb-10">
+      If you're serious about optimizing operations, integrating AI, and scaling efficiently—
+      let’s talk.
+    </p>
+
+    <!-- CTA BUTTON -->
+    <div id="scrollCTA" 
+     class="fixed bottom-6 left-1/2 -translate-x-1/2 
+            bg-[#0a0a0a] border border-white/10 px-6 py-3 rounded-full 
+            opacity-0 transition duration-500">
+
+  <a href="#contact" class="text-[#F26B21] font-medium">
+    Book Call →
+  </a>
+    </div>
+
+    <!-- TRUST LINE -->
+<!-- <p class="text-xs text-gray-500 mt-2"> -->
+  No commitment • 15-minute call • Real strategy
+</p>
+  </div>
+
+</section>
+
+
+<!-- WHATSAPP -->
+<!-- <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp">
+  Chat on WhatsApp
+</a> -->
+
+<!-- FOOTER -->
+<footer class="bg-[#020202] border-t border-white/5 py-16">
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- BRAND -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">
+          EVERETTE <span class="text-[#F26B21]">FARMER</span>
+        </h3>
+        <p class="text-gray-500 text-sm max-w-xs">
+          Helping businesses scale through AI, systems, and execution.
+        </p>
+      </div>
+
+      <!-- NAVIGATION -->
+      <div>
+        <h4 class="font-semibold mb-3 text-sm">Navigation</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="#services" class="hover:text-white transition">Services</a></li>
+          <li><a href="#projects" class="hover:text-white transition">Projects</a></li>
+          <li><a href="#testimonials" class="hover:text-white transition">Testimonials</a></li>
+          <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h4 class="font-semibold mb-3 text-sm">Connect</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li>
+            <a href="#contact" class="hover:text-white transition">
+              Book Strategy Call
+            </a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition">
+              Email
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="border-t border-white/5 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+
+      <p>
+        © 2026 Everette Farmer. All rights reserved.
+      </p>
+
+      <p class="mt-2 md:mt-0">
+        Built with precision.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<div id="exitPopup" 
+     class="fixed inset-0 bg-black/80 flex items-center justify-center hidden z-50">
+
+  <div class="bg-[#0a0a0a] p-8 rounded-2xl text-center max-w-md">
+
+    <h3 class="text-xl font-bold mb-4">
+      Before You Go…
+    </h3>
+
+    <p class="text-gray-400 mb-6">
+      Want a quick strategy breakdown for your business?
+    </p>
+
+    <a href="#contact" 
+       class="bg-[#F26B21] px-6 py-3 rounded-full font-semibold">
+      Book Free Call
+    </a>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- ANIMATION SCRIPT -->
+<script>
+
+
+
+const menu = document.getElementById("mobileMenu");
+
+function toggleMenu() {
+  menu.classList.toggle("opacity-0");
+  menu.classList.toggle("pointer-events-none");
+}
+
+document.getElementById("menuBtn").addEventListener("click", toggleMenu);
+
+
+window.addEventListener("scroll", () => {
+  const cta = document.getElementById("scrollCTA");
+  if (window.scrollY > 800) {
+    cta.style.opacity = "1";
+  } else {
+    cta.style.opacity = "0";
+  }
+});
+
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+// <!-- testimonial SCRIPT -->
+let index = 0;
+const slider = document.getElementById("testimonialSlider");
+const totalSlides = slider.children.length;
+
+function updateSlide() {
+  slider.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function nextSlide() {
+  index = (index + 1) % totalSlides;
+  updateSlide();
+}
+
+function prevSlide() {
+  index = (index - 1 + totalSlides) % totalSlides;
+  updateSlide();
+}
+
+
+
+
+// document.addEventListener("mouseleave", function(e) {
+//   if (e.clientY < 0) {
+//     document.getElementById("exitPopup").classList.remove("hidden");
+//   }
+// });
+
+</script>
+</body>
+</html>
