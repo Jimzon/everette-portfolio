@@ -292,21 +292,41 @@ gtag('config', 'YOUR_GA_ID');
 </section>
 
 <!-- PROOF -->
-<section class="py-20 border-y border-white/5 bg-[#020202]">
+<section class="counter-section py-20 border-y border-white/5 bg-[#020202]">
 
   <div class="max-w-7xl mx-auto px-6 md:px-12">
 
     <div class="grid md:grid-cols-4 gap-10 text-center">
-      <div><h3 class="text-4xl font-bold">27%</h3><p class="text-gray-500 text-sm">Retention Growth</p></div>
-      <div><h3 class="text-4xl font-bold">10+</h3><p class="text-gray-500 text-sm">Years Experience</p></div>
-      <div><h3 class="text-4xl font-bold">Global</h3><p class="text-gray-500 text-sm">Clients</p></div>
-      <div><h3 class="text-4xl font-bold">ISO</h3><p class="text-gray-500 text-sm">Security</p></div>
+
+      <div>
+        <h3 class="text-4xl font-bold">
+          <span class="counter" data-target="27">0</span>%
+        </h3>
+        <p class="text-gray-500 text-sm">Retention Growth</p>
+      </div>
+
+      <div>
+        <h3 class="text-4xl font-bold">
+          <span class="counter" data-target="10">0</span>+
+        </h3>
+        <p class="text-gray-500 text-sm">Years Experience</p>
+      </div>
+
+      <div>
+        <h3 class="text-4xl font-bold">Global</h3>
+        <p class="text-gray-500 text-sm">Clients</p>
+      </div>
+
+      <div>
+        <h3 class="text-4xl font-bold">ISO</h3>
+        <p class="text-gray-500 text-sm">Security</p>
+      </div>
+
     </div>
 
   </div>
 
 </section>
-
 <!-- SERVICES -->
 
 <section id="services" class="py-28 bg-[#020202] relative overflow-hidden">
@@ -615,23 +635,30 @@ gtag('config', 'YOUR_GA_ID');
 
 </section>
 
+
 <!-- RESULTS -->
-<section class="py-16 bg-[#020202] border-y border-white/5">
+<section class="counter-section py-16 bg-[#020202] border-y border-white/5">
 
   <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-4 gap-8 text-center">
 
     <div>
-      <h3 class="text-3xl font-bold">+27%</h3>
+      <h3 class="text-3xl font-bold">
+        <span class="counter" data-target="27" data-prefix="+">0</span>%
+      </h3>
       <p class="text-gray-500 text-sm">Retention Growth</p>
     </div>
 
     <div>
-      <h3 class="text-3xl font-bold">-30%</h3>
+      <h3 class="text-3xl font-bold">
+        <span class="counter" data-target="-30">0</span>%
+      </h3>
       <p class="text-gray-500 text-sm">Operational Inefficiency</p>
     </div>
 
     <div>
-      <h3 class="text-3xl font-bold">25%</h3>
+      <h3 class="text-3xl font-bold">
+        <span class="counter" data-target="25">0</span>%
+      </h3>
       <p class="text-gray-500 text-sm">Sales Increase</p>
     </div>
 
@@ -1046,6 +1073,63 @@ window.addEventListener("scroll", () => {
     cta.style.opacity = "0";
   }
 });
+
+
+// count-up animation
+const counters = document.querySelectorAll('.counter');
+let started = false;
+
+function animateCounters() {
+  counters.forEach(counter => {
+    const target = +counter.dataset.target;
+    const prefix = counter.dataset.prefix || "";
+    const suffix = counter.dataset.suffix || "";
+
+    let count = 0;
+
+    const update = () => {
+      count += (target - count) * 0.1;
+
+      if (Math.abs(target - count) > 0.5) {
+        counter.innerText = prefix + Math.floor(count) + suffix;
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = prefix + target + suffix;
+      }
+    };
+
+    update();
+  });
+}
+
+// 🔥 Trigger when ANY counter section appears
+window.addEventListener('scroll', () => {
+  const firstCounter = document.querySelector('.counter');
+  if (!firstCounter) return;
+
+  const rect = firstCounter.getBoundingClientRect();
+
+  if (!started && rect.top < window.innerHeight * 0.8) {
+    animateCounters();
+    started = true;
+  }
+});
+
+
+// trigger when section is visible
+window.addEventListener('scroll', () => {
+  const section = document.querySelector('.counter')?.closest('section');
+  if (!section) return;
+
+  const rect = section.getBoundingClientRect();
+
+  if (!started && rect.top < window.innerHeight * 0.8) {
+    animateCounters();
+    started = true;
+  }
+});
+
+
 
 
 const observer = new IntersectionObserver(entries => {
